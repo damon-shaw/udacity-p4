@@ -1,4 +1,46 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/damon-shaw/udacity-p4/tree/master.svg?style=svg)](https://circleci.com/gh/damon-shaw/udacity-p4/tree/master)
+
+## File Overview
+  * `app.py`
+    * The Flask REST API that allows clients to request predictions from the model. This
+	application invokes the model.
+  * `Makefile`
+    * A set of build targets to perform common actions for this project, such as retrieving
+	dependencies, linting, and testing.
+  * `Dockerfile`
+    * A file for building the Docker image for the Flask application.
+  * `run_docker.sh`
+    * Builds a Docker image for the Flask application, tags it, then runs it locally.
+  * `make_prediction.sh`
+    * A basic client that contacts the running service for a prediction.
+  * `upload_docker.sh`
+    * Uploads the built Docker image to the remot DockerHub repository.
+  * `run_kubernetes.sh`
+    * Retrieves the latest version of the DockerHub image and runs it inside of a Minikube Kubernetes cluster.
+  * `output_txt_files/docker_out.txt`
+    * The collected output from running the Docker container and contacting it with the
+	provided sample client.
+  * `output_txt_files/kubernetes_out.txt`
+    * The collected output from running the Docker image in the Kubernetes cluster and
+	contacting it with the provided sample client.
+
+## Setup the Environment
+
+* Create a virtualenv and activate it
+* Run `make install` to install the necessary dependencies
+
+### Running `app.py`
+
+1. Standalone:  `python app.py`
+2. Run in Docker:  `./run_docker.sh`
+3. Run in Kubernetes:  `./run_kubernetes.sh`
+
+### Kubernetes Steps
+
+* Setup and Configure Docker locally
+* Setup and Configure Kubernetes locally
+* Create Flask app in Container
+* Run via kubectl
 
 ## Project Overview
 
@@ -22,21 +64,3 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 **The final implementation of the project will showcase your abilities to operationalize production microservices.**
 
 ---
-
-## Setup the Environment
-
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
-
-### Running `app.py`
-
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
-
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
