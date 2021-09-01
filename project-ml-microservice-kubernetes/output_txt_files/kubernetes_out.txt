@@ -1,1 +1,51 @@
-<paste log output from Kubernetes-mediated prediction, here>
+Error from server (AlreadyExists): pods "boston-predict-api" already exists
+NAME                 READY   STATUS    RESTARTS   AGE
+boston-predict-api   1/1     Running   0          42m
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+
+====================================================================================================
+
+Logs from `kubectl logs`
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 318-378-060
+[2021-09-01 01:47:31,666] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-09-01 01:47:31,680] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 01:47:31,696] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 01:47:31,699] INFO in app: Scaled payload: [[0. 0. 0. 0. 0. 0.]]
+[2021-09-01 01:47:31,700] INFO in app: Prediction Value: [20.35373177134412]
+127.0.0.1 - - [01/Sep/2021 01:47:31] "POST /predict HTTP/1.1" 200 -
+[2021-09-01 02:27:03,510] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-09-01 02:27:03,523] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 02:27:03,534] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 02:27:03,538] INFO in app: Scaled payload: [[0. 0. 0. 0. 0. 0.]]
+[2021-09-01 02:27:03,538] INFO in app: Prediction Value: [20.35373177134412]
+127.0.0.1 - - [01/Sep/2021 02:27:03] "POST /predict HTTP/1.1" 200 -
+
+====================================================================================================
+
+Logs from client:
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}

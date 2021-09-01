@@ -1,1 +1,59 @@
-<paste log output from Docker prediction, here>
+Sending build context to Docker daemon  21.47MB
+Step 1/7 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/7 : WORKDIR /app
+ ---> Using cache
+ ---> af72ece60ff1
+Step 3/7 : COPY app.py requirements.txt Makefile /app/
+ ---> Using cache
+ ---> 238f6cfac555
+Step 4/7 : COPY model_data/ /app/model_data
+ ---> Using cache
+ ---> 4939b6caee1b
+Step 5/7 : RUN make install
+ ---> Using cache
+ ---> 2bb7a87170e0
+Step 6/7 : EXPOSE 80
+ ---> Using cache
+ ---> eea0c28c827f
+Step 7/7 : CMD ["python", "app.py"]
+ ---> Using cache
+ ---> 5226263aa118
+Successfully built 5226263aa118
+Successfully tagged boston-predict-api:latest
+REPOSITORY            TAG             IMAGE ID       CREATED       SIZE
+boston-predict-api    latest          5226263aa118   2 hours ago   1.24GB
+vanthios/udacity-p4   latest          5226263aa118   2 hours ago   1.24GB
+<none>                <none>          44a09ab0775d   2 hours ago   1.24GB
+<none>                <none>          3764666837a2   4 hours ago   1.24GB
+<none>                <none>          81467737875d   2 days ago    1.24GB
+python                3.7.3-stretch   34a518642c76   2 years ago   929MB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 251-146-402
+[2021-09-01 02:35:26,750] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-09-01 02:35:26,764] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 02:35:26,775] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-09-01 02:35:26,778] INFO in app: Scaled payload: [[0. 0. 0. 0. 0. 0.]]
+[2021-09-01 02:35:26,779] INFO in app: Prediction Value: [20.35373177134412]
+172.17.0.1 - - [01/Sep/2021 02:35:26] "POST /predict HTTP/1.1" 200 -
+
+====================================================================================================
+Client logs:
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
