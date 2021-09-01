@@ -19,4 +19,4 @@ docker image ls
 # Invoke the `run` command, use the `-p` flag to bind port 8080 on the local machine to the exposed
 # port 80 on the image. Specify which image to run by recalling the tag we assigned to the image
 # above.
-docker run -p 8080:80 boston-predict-api
+docker run -p 8000:80 boston-predict-api

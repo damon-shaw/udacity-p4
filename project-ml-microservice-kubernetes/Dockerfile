@@ -6,7 +6,8 @@ WORKDIR /app
 
 ## Step 2:
 # Copy source code to working directory
-COPY model_data app.py requirements.txt Makefile /app/
+COPY app.py requirements.txt Makefile /app/
+COPY model_data/ /app/model_data
 
 ## Step 3:
 # Install packages from requirements.txt
